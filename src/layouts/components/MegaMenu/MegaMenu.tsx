@@ -14,7 +14,7 @@ const MegaMenu = () => {
     }
 
     return (
-    <header id="app-header" className="shadow-2xs">
+    <div id="app-header" className="shadow-2xs">
         <div className="bg-white p-4 border-b border-gray-100">
             <Container className="flex items-center w-full justify-between ">
                 <a href="#" className="inline-block">ShopMe</a>
@@ -34,7 +34,7 @@ const MegaMenu = () => {
                 </button>
             </Container>
         </div>
-    </header>
+    </div>
     )
 }
 

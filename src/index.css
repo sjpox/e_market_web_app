@@ -10,3 +10,13 @@ body {
     margin: 0;
     /* background-color: gainsboro; */
 }
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+@utility border-bright-gray {
+    border-color: rgb(234 234 234 / var(--tw-border-opacity));
+}
