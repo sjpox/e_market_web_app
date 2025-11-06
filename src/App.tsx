@@ -1,32 +1,15 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import MainLayout from './layouts/MainLayout'
+import Home from './pages/Home/Home'
 
-function App() {
-  const handleClick = () => {
-    alert('click')
-  }
+const App = () => {
   
   useEffect(()=> {
     
   }, [])
 
-  function handleClick2() {
-    alert('click 2')
-  }
-  
-  const [username, setUsername] = useState<string>("")
-  const handleChangeUsername = (event: any) => {
-    setUsername(event.target.value);
-  }
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-    console.log("event %s", event)
-    console.log(event.target.elements.username.value)
-  }
-
   return (
-    <MainLayout/>
+    <Home/>
   )
 }
 
