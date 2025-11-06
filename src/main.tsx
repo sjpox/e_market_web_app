@@ -1,10 +1,11 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import Home from './pages/Home/Home.tsx'
-import Product from './pages/Product/Product.tsx'
-import Error from './pages/Error/Error.tsx'
+
+const Home = lazy(() => import('./pages/Home/Home.tsx'))
+const Product = lazy(() => import('./pages/Product/Product.tsx'))
+const Error = lazy(() => import('./pages/Error/Error.tsx'))
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
+    <Suspense fallback={<div>Loading page...</div>}>
+      <RouterProvider router={router}/>
+    </Suspense>
+  </StrictMode>
 )
