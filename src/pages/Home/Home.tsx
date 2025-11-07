@@ -4,7 +4,10 @@ import Card, { CardHeader, CardDescription } from "../../components/Card/Card";
 import Carousel from "../../components/Carousel/Carousel";
 import Container from "../../components/Container/Container";
 import { useNavigate } from "react-router";
-import { getProducts } from "../../services/product";
+import { getProducts } from "../../services/api/requests/Product/Product";
+import { setProducts } from "../../redux/slices/Product";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectProducts } from "../../redux/slices/Products.selector";
 
 const CategoryList = () => {
     const categories = ["Mobiles MobilesMobilesMobiles", "Outdoor Lightning", "T-Shirts & Tanks", 
@@ -28,9 +31,10 @@ const CategoryList = () => {
 }
 
 const ProductList = () => {
-    const products = [1,2,3,4,5,6,7]
     const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+    const products = useAppSelector(selectProducts)
 
     const handleClick = (e:  React.MouseEvent<HTMLButtonElement>) => {
         // alert("Hello")
@@ -40,14 +44,15 @@ const ProductList = () => {
         navigate("/product")
     }
 
-    useEffect(() => {
-        const fetchProducts = async() => {
-            const products = await getProducts();
-            console.log(`products ${JSON.stringify(products)}`)
-        }
+    const fetchProducts = async() => {
+        const products = await getProducts();
+        dispatch(setProducts(products.data.result))
+        console.log(`products ${JSON.stringify(products)}`)
+        return products
+    }
 
+    useEffect(() => {
         fetchProducts()
-        
     },[])
 
     useEffect(()=> {
@@ -57,11 +62,11 @@ const ProductList = () => {
         <>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4 w-full">
                 {
-                    products.map(()=> {
+                    products?.map((value)=> {
                         return (
                             <Card 
                             header={<CardHeader/>}
-                            description={<CardDescription/>}
+                            description={<CardDescription title={value.productName} subtitle={value.price.toString()}/>}
                             onClick={handleClick}
                             />
                         )

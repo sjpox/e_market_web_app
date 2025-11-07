@@ -2,6 +2,8 @@ import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router'
+import { Provider } from 'react-redux'
+import store from './redux/store.ts'
 
 const Home = lazy(() => import('./pages/Home/Home.tsx'))
 const Product = lazy(() => import('./pages/Product/Product.tsx'))
@@ -26,8 +28,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Suspense fallback={<div>Loading page...</div>}>
-      <RouterProvider router={router}/>
-    </Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<div>Loading page...</div>}>
+        <RouterProvider router={router}/>
+      </Suspense>
+    </Provider>
   </StrictMode>
 )

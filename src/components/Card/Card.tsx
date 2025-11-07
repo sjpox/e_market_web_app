@@ -8,19 +8,23 @@ export const CardHeader = ({ className = ""}: CardHeaderProps) => {
     )
 }
 
-export const CardDescription = () => {
+type CardDescription = {
+    title: string,
+    subtitle: string
+}
+
+export const CardDescription = ({ title, subtitle }: CardDescription) => {
     return (
         <div className="flex flex-col gap-y-2 p-4 text-left">
             <p 
                 className="line-clamp-3" 
-                title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit2.">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit2.
+                title={title}>
+                    {title}
             </p>
-            <h2>P200.00</h2>
+            <h2>P{subtitle}</h2>
         </div>
     )
 }
-
 
 type CardProps = {
     header?: React.ReactNode,
