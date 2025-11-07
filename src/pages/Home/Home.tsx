@@ -4,6 +4,7 @@ import Card, { CardHeader, CardDescription } from "../../components/Card/Card";
 import Carousel from "../../components/Carousel/Carousel";
 import Container from "../../components/Container/Container";
 import { useNavigate } from "react-router";
+import { getProducts } from "../../services/product";
 
 const CategoryList = () => {
     const categories = ["Mobiles MobilesMobilesMobiles", "Outdoor Lightning", "T-Shirts & Tanks", 
@@ -34,9 +35,21 @@ const ProductList = () => {
     const handleClick = (e:  React.MouseEvent<HTMLButtonElement>) => {
         // alert("Hello")
         setIsOpen(true)
+        
         console.log("product list open")
         navigate("/product")
     }
+
+    useEffect(() => {
+        const fetchProducts = async() => {
+            const products = await getProducts();
+            console.log(`products ${JSON.stringify(products)}`)
+        }
+
+        fetchProducts()
+        
+    },[])
+
     useEffect(()=> {
         console.log("useEffect")
     }, [isOpen])
