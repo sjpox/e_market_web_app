@@ -56,7 +56,6 @@ const ProductList = () => {
     },[])
 
     useEffect(()=> {
-        console.log("useEffect")
     }, [isOpen])
     return (
         <>
