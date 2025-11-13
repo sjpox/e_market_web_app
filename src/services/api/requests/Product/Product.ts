@@ -2,7 +2,7 @@ import instance from "../../../Client"
 
 export const getProducts = () => {
     return instance.request({
-        url: "/products",
+        url: "/product/v1/products",
         method: "GET"
     })
 }
