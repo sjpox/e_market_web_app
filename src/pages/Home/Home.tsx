@@ -6,14 +6,24 @@ import Container from "../../components/Container/Container";
 import { useNavigate } from "react-router";
 import { getProducts } from "../../services/api/requests/Product/Product";
 import { setProducts } from "../../redux/slices/Product";
+import { setCategories } from "../../redux/slices/Category";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectProducts } from "../../redux/slices/Products.selector";
 import { selectCategories } from "../../redux/slices/Categor.selector";
+import { getCategories } from "../../services/api/requests/Category/Category";
 
 const CategoryList = () => {
     const dispatch = useAppDispatch()
     const categories = useAppSelector(selectCategories)
 
+    useEffect(() => {
+        const fetchCategories = async() => {
+            const response = await getCategories()
+            dispatch(response.data?.result)
+        }
+        fetchCategories()
+    }, [])
+    
     // const categories = ["Mobiles MobilesMobilesMobiles", "Outdoor Lightning", "T-Shirts & Tanks", 
     //     "Baby Disposable Diapers", "Wireless Earbuds", "Power Banks", "Christmas Decoration", "Phone Cables & Converters",
     // "Electrical Circuitry", "Speakers", "Women's Dresses", "Space Savers", "IP Security Cameras", "Curtains", "Kitchen Organizers", "Tablets"]
