@@ -8,11 +8,15 @@ import { getProducts } from "../../services/api/requests/Product/Product";
 import { setProducts } from "../../redux/slices/Product";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectProducts } from "../../redux/slices/Products.selector";
+import { selectCategories } from "../../redux/slices/Categor.selector";
 
 const CategoryList = () => {
-    const categories = ["Mobiles MobilesMobilesMobiles", "Outdoor Lightning", "T-Shirts & Tanks", 
-        "Baby Disposable Diapers", "Wireless Earbuds", "Power Banks", "Christmas Decoration", "Phone Cables & Converters",
-    "Electrical Circuitry", "Speakers", "Women's Dresses", "Space Savers", "IP Security Cameras", "Curtains", "Kitchen Organizers", "Tablets"]
+    const dispatch = useAppDispatch()
+    const categories = useAppSelector(selectCategories)
+
+    // const categories = ["Mobiles MobilesMobilesMobiles", "Outdoor Lightning", "T-Shirts & Tanks", 
+    //     "Baby Disposable Diapers", "Wireless Earbuds", "Power Banks", "Christmas Decoration", "Phone Cables & Converters",
+    // "Electrical Circuitry", "Speakers", "Women's Dresses", "Space Savers", "IP Security Cameras", "Curtains", "Kitchen Organizers", "Tablets"]
     return (
     <div className="grid grid-cols-6 gap-2">
         {
@@ -21,7 +25,7 @@ const CategoryList = () => {
                     <Card 
                     header={<CardHeader className="rounded-none w-1/2!"/>} 
                     className="rounded-none hover:shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)] p-2"
-                    description={<p className="line-clamp-2 px-2 text-center text-sm w-full">{value}</p>}
+                    description={<p className="line-clamp-2 px-2 text-center text-sm w-full">{value.description}</p>}
                     />
                 )
             })
