@@ -17,9 +17,9 @@ const CategoryList = () => {
     const categories = useAppSelector(selectCategories)
 
     useEffect(() => {
-        const fetchCategories = async() => {
+        const fetchCategories = async () => {
             const response = await getCategories()
-            dispatch(response.data?.result)
+            dispatch(setCategories(response.data?.result))
         }
         fetchCategories()
     }, [])
