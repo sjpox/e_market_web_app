@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store.ts'
 
 const Home = lazy(() => import('./pages/Home/Home.tsx'))
+const AdminHome = lazy(() => import('./pages/Admin/pages/Home/Home.tsx'))
 const Product = lazy(() => import('./pages/Product/Product.tsx'))
 const Error = lazy(() => import('./pages/Error/Error.tsx'))
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     path: "/product",
     element: <Product/>,
     errorElement: <Error/>
+  },
+  {
+    path: "/admin",
+    element: <AdminHome/>
   },
   {
     path: "*",
