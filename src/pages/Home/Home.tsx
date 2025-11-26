@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectProducts } from "../../redux/slices/Products.selector";
 import { selectCategories } from "../../redux/slices/Categor.selector";
 import { getCategories } from "../../services/api/requests/Category/Category";
+import useCustom from "../../hooks/useCustom";
 
 const CategoryList = () => {
     const dispatch = useAppDispatch()
@@ -71,6 +72,7 @@ const ProductList = () => {
 
     useEffect(()=> {
     }, [isOpen])
+
     return (
         <>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4 w-full">
@@ -92,6 +94,12 @@ const ProductList = () => {
 
 
 const Home = () => {
+    const [value, error] = useCustom();
+    
+    useEffect(() => {
+        console.log(`value1 ${value} ${error}`)
+    }, [value])
+
     return (
         <MainLayout>
             <main id="main" className="flex flex-col gap-4">
